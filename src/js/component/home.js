@@ -1,4 +1,6 @@
 import React from "react";
+import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
 
 //include images into your bundle
 import rigoImage from "../../img/rigo-baby.jpg";
@@ -24,15 +26,45 @@ const boxAlignment = {
 	Color: "Green"
 };
 
-import { pos1 } from "./component/counter.js";
-import { pos2 } from "./component/counter.js";
-import { pos3 } from "./component/counter.js";
-import { pos4 } from "./component/counter.js";
-import { pos5 } from "./component/counter.js";
-import { pos6 } from "./component/counter.js";
+let Pos1 = 0;
+let Pos2 = 0;
+let Pos3 = 0;
+let Pos4 = 0;
+let Pos5 = 0;
+let Pos6 = 0;
+let counter = 0;
+let counterCopy = 0;
+
+export function myTimer() {
+	Pos1++;
+	console.log(Pos1);
+}
 
 //create your first component
 export function Home() {
+	//export const Home = props => {
+	/*Pos1 = 0;
+	Pos2 = ;
+	Pos3 = 3;
+	Pos4 = 4;
+	Pos5 = 5;
+	Pos6 = 6;*/
+
+	counter++;
+	counterCopy = counter;
+	Pos1 = counterCopy % 10;
+	counterCopy = Math.floor(counterCopy / 10);
+	Pos2 = counterCopy % 10;
+	counterCopy = Math.floor(counterCopy / 10);
+	Pos3 = counterCopy % 10;
+	counterCopy = Math.floor(counterCopy / 10);
+	Pos4 = counterCopy % 10;
+	counterCopy = Math.floor(counterCopy / 10);
+	Pos5 = counterCopy % 10;
+	counterCopy = Math.floor(counterCopy / 10);
+	Pos6 = counterCopy % 10;
+	counterCopy = Math.floor(counterCopy / 10);
+
 	return (
 		<div className="container">
 			<div className="row" fluid>
@@ -44,32 +76,32 @@ export function Home() {
 				</div>
 				<div style={columnwidth} className="col">
 					<div style={boxAlignment} className="text-info">
-						{pos6}
+						{Pos6}
 					</div>
 				</div>
 				<div style={columnwidth} className="col">
 					<div style={boxAlignment} className="text-info">
-						{pos5}
+						{Pos5}
 					</div>
 				</div>
 				<div style={columnwidth} className="col">
 					<div style={boxAlignment} className="text-info">
-						{pos4}
+						{Pos4}
 					</div>
 				</div>
 				<div style={columnwidth} className="col">
 					<div style={boxAlignment} className="text-info">
-						{pos3}
+						{Pos3}
 					</div>
 				</div>
 				<div style={columnwidth} className="col">
 					<div style={boxAlignment} className="text-info">
-						{pos2}
+						{Pos2}
 					</div>
 				</div>
 				<div style={columnwidth} className="col">
 					<div style={boxAlignment} className="text-info">
-						{pos1}
+						{Pos1}
 					</div>
 				</div>
 			</div>
