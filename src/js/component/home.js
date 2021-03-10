@@ -19,7 +19,7 @@ const columnwidth = {
 
 const columnInput = {
 	width: "400px",
-	height: "300px",
+	height: "400px",
 	border: "2px solid #FFFFFF",
 	backgroundColor: "black",
 	marginLeft: "5",
@@ -46,6 +46,10 @@ const boxInput = {
 	Color: "Green"
 };
 
+const clockSize = {
+	fontSize: "80px"
+};
+
 let Pos1 = 0;
 let Pos2 = 0;
 let Pos3 = 0;
@@ -55,9 +59,7 @@ let Pos6 = 0;
 let counter = 0;
 let counterCopy = 0;
 let stopState = true;
-let resetState = false;
-let startState = false;
-let resumeState = false;
+let countDown = false;
 
 /*export function myTimer() {
 	Pos1++;
@@ -71,6 +73,7 @@ export function Home() {
 	const clickStart = e => {
 		if (counter == 0 && stopState == true) {
 			stopState = false;
+			countDown = false;
 		}
 		//if
 	};
@@ -80,11 +83,12 @@ export function Home() {
 		}
 	};
 	const clickCountDown = e => {
-		let countValue = document.getElementsByClassName("input-group");
+		let countValue = document.getElementById("countDownValue").value;
 		console.log(countValue);
 		if (countValue > 0 && stopState == true) {
 			counter = countValue;
 			stopState = false;
+			countDown = true;
 		}
 	};
 
@@ -99,8 +103,16 @@ export function Home() {
 		Pos6 = 0;
 	};
 
-	if (stopState == false) {
-		counter++;
+	if (
+		stopState == false &&
+		((countDown == false && counter <= 999999) ||
+			(countDown == true && counter > 0))
+	) {
+		if (countDown == false) {
+			counter++;
+		} else {
+			counter--;
+		}
 		counterCopy = counter;
 		Pos1 = counterCopy % 10;
 		counterCopy = Math.floor(counterCopy / 10);
@@ -151,18 +163,15 @@ export function Home() {
 							className="btn btn-secondary">
 							Start Countdown
 						</button>
-						<div className="input-group">
-							<span className="input-group-text">Countdown</span>
-							<textarea
-								className="form-control"
-								aria-label="With textarea">
-								0
-							</textarea>
-						</div>
+						<input
+							id="countDownValue"
+							placeholder="Countdown Value"></input>
 					</div>
 				</div>
 				<div style={columnwidth} className="col">
-					<div style={boxInput} className="text-info"></div>
+					<div style={boxInput} className="text-info">
+						<i class="fas fa-clock" style={clockSize}></i>
+					</div>
 				</div>
 				<div style={columnwidth} className="col">
 					<div style={boxNumer} className="text-info">
